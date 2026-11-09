@@ -1,4 +1,5 @@
 {
+  "arb-editor.suppressedWarnings": ["missing_metadata_for_key"],
   "java.configuration.updateBuildConfiguration": "interactive",
   "editor.codeActionsOnSave": {
     "source.organizeImports": "always",
