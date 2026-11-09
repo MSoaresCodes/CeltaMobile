@@ -1,9 +1,11 @@
-import 'package:celta_inventario/utils/utils.dart';
 import 'dart:math';
 
 import 'package:celta_inventario/commom_widgets/commom_widgets.dart';
+import 'package:celta_inventario/constants/constants.dart';
 import 'package:celta_inventario/core/presentation/controllers/app_version/app_version.dart';
 import 'package:celta_inventario/features/home/presentation/pages/components/components.dart';
+import 'package:celta_inventario/localization/presentation/components/components.dart';
+import 'package:celta_inventario/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -25,7 +27,14 @@ class CompleteDrawer extends ConsumerWidget {
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [UserNameDrawerItem()],
+                  children: [
+                    UserNameDrawerItem(),
+                    gapH16,
+                    Padding(
+                      padding: .symmetric(horizontal: Sizes.p8),
+                      child: LanguageSelector(),
+                    ),
+                  ],
                 ),
               ),
             ),

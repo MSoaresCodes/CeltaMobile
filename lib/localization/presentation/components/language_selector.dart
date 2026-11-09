@@ -1,4 +1,5 @@
 import 'package:celta_inventario/commom_widgets/commom_widgets.dart';
+import 'package:celta_inventario/features/auth/presentation/controllers/controllers.dart';
 import 'package:celta_inventario/localization/localization.dart';
 import 'package:celta_inventario/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,11 @@ class LanguageSelector extends ConsumerWidget {
     ref.listen(languageControllerProvider, (_, next) {
       next.showAlertDialogOnError(context);
     });
+
+    final isLoading = ref.watch(
+      loginControllerProvider.select((s) => s.isLoading),
+    );
+
     return BaseDropDown<AppLanguage>(
       label: context.l10n.language,
       showLabelAtTopLeft: true,
@@ -22,18 +28,16 @@ class LanguageSelector extends ConsumerWidget {
           .map(
             (language) => DropdownMenuItem(
               value: language,
-              child: Text(
-                switch (language) {
-                  AppLanguage.portuguese => context.l10n.portuguese,
-                  AppLanguage.english => context.l10n.english,
-                  AppLanguage.spanish => context.l10n.spanish,
-                  AppLanguage.chinese => context.l10n.chinese,
-                },
-              ),
+              child: Text(switch (language) {
+                AppLanguage.portuguese => context.l10n.portuguese,
+                AppLanguage.english => context.l10n.english,
+                AppLanguage.spanish => context.l10n.spanish,
+                AppLanguage.chinese => context.l10n.chinese,
+              }),
             ),
           )
           .toList(),
-      onChanged: controller.setLanguage,
+      onChanged: isLoading ? null : controller.setLanguage,
     );
   }
 }

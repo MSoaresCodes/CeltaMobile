@@ -1,5 +1,5 @@
 import 'package:celta_inventario/localization/localization.dart';
-import 'package:celta_inventario/localization/presentation/widgets/widgets.dart';
+import 'package:celta_inventario/localization/presentation/components/components.dart';
 import 'package:celta_inventario/localization/providers.dart';
 import 'package:celta_inventario/utils/utils.dart';
 import 'package:flutter/material.dart';

@@ -1,4 +1,3 @@
-import 'package:celta_inventario/localization/presentation/widgets/widgets.dart';
 import 'package:celta_inventario/commom_widgets/commom_widgets.dart';
 import 'package:celta_inventario/constants/constants.dart';
 import 'package:celta_inventario/core/domain/entities/entities.dart';
@@ -18,8 +17,6 @@ class SettingsPage extends StatelessWidget {
       body: Column(
         children: [
           BaseText.headline(context.l10n.settings),
-          gapH16,
-          const LanguageSelector(),
           gapH16,
           Consumer(
             builder: (_, ref, _) {

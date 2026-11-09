@@ -1,10 +1,10 @@
-import 'package:celta_inventario/localization/presentation/widgets/widgets.dart';
 import 'package:celta_inventario/commom_widgets/commom_widgets.dart';
 import 'package:celta_inventario/constants/constants.dart';
 import 'package:celta_inventario/core/presentation/controllers/user_session/user_session.dart';
 import 'package:celta_inventario/features/auth/presentation/controllers/controllers.dart';
 import 'package:celta_inventario/features/auth/presentation/pages/components/components.dart';
 import 'package:celta_inventario/features/home/presentation/controllers/controllers.dart';
+import 'package:celta_inventario/localization/presentation/components/components.dart';
 import 'package:celta_inventario/routing/routing.dart';
 import 'package:celta_inventario/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -93,6 +93,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const CeltaImage(),
+                  gapH16,
                   const LanguageSelector(),
                   gapH16,
                   EnterpriseField(
