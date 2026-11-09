@@ -1,8 +1,8 @@
-import 'package:celta_inventario/features/adjust_sale_price/presentation/localization/localization.dart';
 import 'package:celta_inventario/commom_widgets/commom_widgets.dart';
 import 'package:celta_inventario/core/domain/entities/entities.dart';
 import 'package:celta_inventario/features/adjust_sale_price/domain/entities/entities.dart';
 import 'package:celta_inventario/features/adjust_sale_price/presentation/controllers/controllers.dart';
+import 'package:celta_inventario/features/adjust_sale_price/presentation/localization/localization.dart';
 import 'package:celta_inventario/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -69,7 +69,7 @@ class PracticedSuggestionAndMinimumPrices extends ConsumerWidget {
         children: [
           RepaintBoundary(
             child: _SuggestionItem(
-              title: context.l10n.currentPrice,
+              title: "${context.l10n.currentPrice} ",
               value: practicedPrice,
               emptyMessage: context.l10n.missingCurrentPrice(
                 selectedPriceType,
@@ -90,7 +90,7 @@ class PracticedSuggestionAndMinimumPrices extends ConsumerWidget {
             ),
           ),
           _SuggestionItem(
-            title: context.l10n.suggestedPrice,
+            title: "${context.l10n.suggestedPrice} ",
             value: suggestionPrice,
             emptyMessage: context.l10n.missingSuggestedPrice(
               selectedPriceType,
@@ -99,7 +99,7 @@ class PracticedSuggestionAndMinimumPrices extends ConsumerWidget {
           ),
           if (minimumPrice != null && minimumPrice > 0)
             _SuggestionItem(
-              title: context.l10n.minimumPrice,
+              title: "${context.l10n.minimumPrice} ",
               value: minimumPrice,
               emptyMessage: "",
             ),
