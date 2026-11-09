@@ -1417,6 +1417,10 @@ class AppLocalizationsPt extends AppLocalizations {
       'O horário não pode ser menor que a data mínima';
 
   @override
+  String get theTimeCannotBeLaterThanTheMaximumDate =>
+      'O horário não pode ser maior que a data máxima';
+
+  @override
   String get ok => 'OK';
 
   @override

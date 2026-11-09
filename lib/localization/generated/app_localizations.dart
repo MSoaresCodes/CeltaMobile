@@ -2690,6 +2690,12 @@ abstract class AppLocalizations {
   /// **'O horário não pode ser menor que a data mínima'**
   String get theTimeCannotBeEarlierThanTheMinimumDate;
 
+  /// No description provided for @theTimeCannotBeLaterThanTheMaximumDate.
+  ///
+  /// In pt, this message translates to:
+  /// **'O horário não pode ser maior que a data máxima'**
+  String get theTimeCannotBeLaterThanTheMaximumDate;
+
   /// No description provided for @ok.
   ///
   /// In pt, this message translates to:

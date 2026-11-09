@@ -4,6 +4,7 @@ import 'package:celta_inventario/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 class GetNewDate {
   GetNewDate._();
@@ -41,10 +42,10 @@ class GetNewDate {
         mode: CupertinoDatePickerMode.date,
       );
     } else {
-      selectedDate = await showDatePicker(
+      selectedDate = await _showMaterialDatePicker(
         context: context,
         firstDate: firstDate,
-        initialDate: initialDate,
+        initialDate: initialDate ?? firstDate,
         lastDate: maximumDate,
       );
     }
@@ -99,7 +100,118 @@ class GetNewDate {
       return null;
     }
 
+    if (finalDateTime.isAfter(maximumDate)) {
+      if (!context.mounted) return null;
+      showToastMessage(
+        context.l10n.theTimeCannotBeLaterThanTheMaximumDate,
+        type: ToastType.error,
+      );
+      return null;
+    }
+
     return finalDateTime;
+  }
+
+  static Future<DateTime?> _showMaterialDatePicker({
+    required BuildContext context,
+    required DateTime firstDate,
+    required DateTime initialDate,
+    required DateTime lastDate,
+  }) {
+    final firstDay = DateUtils.dateOnly(firstDate);
+    final lastDay = DateUtils.dateOnly(lastDate);
+    var selectedDate = DateUtils.dateOnly(initialDate);
+    var isTextEntry = false;
+    final formKey = GlobalKey<FormState>();
+    final dateFormat = DateFormat('dd/MM/yyyy');
+    final formatter = DateInputFormatter();
+
+    return showDialog<DateTime>(
+      context: context,
+      builder: (context) {
+        final labels = MaterialLocalizations.of(context);
+        return StatefulBuilder(
+          builder: (context, setState) {
+            void confirm() {
+              if (isTextEntry) {
+                final form = formKey.currentState!;
+                if (!form.validate()) return;
+                form.save();
+              }
+              context.pop(selectedDate);
+            }
+
+            return AlertDialog(
+              scrollable: true,
+              title: Row(
+                children: [
+                  Expanded(child: Text(labels.datePickerHelpText)),
+                  IconButton(
+                    tooltip: isTextEntry
+                        ? labels.calendarModeButtonLabel
+                        : labels.inputDateModeButtonLabel,
+                    icon: Icon(isTextEntry ? Icons.calendar_today : Icons.edit),
+                    onPressed: () {
+                      if (isTextEntry) {
+                        final form = formKey.currentState!;
+                        if (form.validate()) form.save();
+                      }
+                      setState(() => isTextEntry = !isTextEntry);
+                    },
+                  ),
+                ],
+              ),
+              content: SizedBox(
+                width: Sizes.p120 * 3,
+                child: isTextEntry
+                    ? Form(
+                        key: formKey,
+                        child: TextFormField(
+                          initialValue: dateFormat.format(selectedDate),
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [formatter],
+                          decoration: InputDecoration(
+                            labelText: labels.dateInputLabel,
+                            hintText: 'DD/MM/YYYY',
+                          ),
+                          validator: (value) {
+                            final date = dateFormat.tryParseStrict(value ?? '');
+                            if (date == null || value!.length != 10) {
+                              return labels.invalidDateFormatLabel;
+                            }
+                            if (date.isBefore(firstDay) ||
+                                date.isAfter(lastDay)) {
+                              return labels.dateOutOfRangeLabel;
+                            }
+                            return null;
+                          },
+                          onSaved: (value) =>
+                              selectedDate = dateFormat.parseStrict(value!),
+                          onFieldSubmitted: (_) => confirm(),
+                        ),
+                      )
+                    : CalendarDatePicker(
+                        initialDate: selectedDate,
+                        firstDate: firstDay,
+                        lastDate: lastDay,
+                        onDateChanged: (date) => selectedDate = date,
+                      ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => context.pop(),
+                  child: Text(labels.cancelButtonLabel),
+                ),
+                TextButton(
+                  onPressed: confirm,
+                  child: Text(labels.okButtonLabel),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
   }
 
   static Future<DateTime?> _showCupertinoDatePicker({

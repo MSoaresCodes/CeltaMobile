@@ -1406,6 +1406,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'The time cannot be earlier than the minimum date';
 
   @override
+  String get theTimeCannotBeLaterThanTheMaximumDate =>
+      'The time cannot be later than the maximum date';
+
+  @override
   String get ok => 'OK';
 
   @override

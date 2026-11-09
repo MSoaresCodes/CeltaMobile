@@ -432,6 +432,7 @@
   "pleaseWait": "Please wait",
   "timeNotUpdated": "Time not updated",
   "theTimeCannotBeEarlierThanTheMinimumDate": "The time cannot be earlier than the minimum date",
+  "theTimeCannotBeLaterThanTheMaximumDate": "The time cannot be later than the maximum date",
   "ok": "OK",
   "select2": "Select",
   "tryAgain": "Try again",

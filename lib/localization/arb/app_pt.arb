@@ -590,6 +590,7 @@
   "pleaseWait": "Aguarde",
   "timeNotUpdated": "Horário não atualizado",
   "theTimeCannotBeEarlierThanTheMinimumDate": "O horário não pode ser menor que a data mínima",
+  "theTimeCannotBeLaterThanTheMaximumDate": "O horário não pode ser maior que a data máxima",
   "ok": "OK",
   "select2": "Selecionar",
   "tryAgain": "Tentar novamente",
