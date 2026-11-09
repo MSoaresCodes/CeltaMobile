@@ -1,6 +1,6 @@
 Localization uses Flutter's ARB generation, configured in `l10n.yaml`.
 Edit `arb/app_pt.arb` (the template) and `arb/app_en.arb`, then run
-`flutter gen-l10n`. Only Portuguese and English are supported.
+`flutter gen-l10n`. Portuguese, English, Spanish, and Simplified Chinese are supported.
 
 Import `package:celta_inventario/localization/localization.dart` and read
 `context.l10n` for translated strings. Existing `.hardcoded`
@@ -13,7 +13,7 @@ Observe `languageControllerProvider` for storage errors. Writes are serialized;
 the displayed language changes only after a successful write and flush.
 
 Persistence contract: Hive box `localization`, key `languageCode`, String `pt`
-or `en`. The existing initialization loop opens the box before `runApp`.
+`en`, `es`, or `zh`. The existing initialization loop opens the box before `runApp`.
 The preference is global to this installation, survives logout, and defaults
 to Portuguese when absent or unsupported, regardless of the device language.
 Existing settings boxes, keys, and logout cleanup remain unchanged.

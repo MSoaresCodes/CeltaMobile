@@ -23,9 +23,12 @@ class LanguageSelector extends ConsumerWidget {
             (language) => DropdownMenuItem(
               value: language,
               child: Text(
-                language == AppLanguage.portuguese
-                    ? context.l10n.portuguese
-                    : context.l10n.english,
+                switch (language) {
+                  AppLanguage.portuguese => context.l10n.portuguese,
+                  AppLanguage.english => context.l10n.english,
+                  AppLanguage.spanish => context.l10n.spanish,
+                  AppLanguage.chinese => context.l10n.chinese,
+                },
               ),
             ),
           )

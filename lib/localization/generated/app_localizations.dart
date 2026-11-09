@@ -6,7 +6,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
+import 'app_localizations_es.dart';
 import 'app_localizations_pt.dart';
+import 'app_localizations_zh.dart';
 
 // ignore_for_file: type=lint
 
@@ -96,6 +98,8 @@ abstract class AppLocalizations {
   static const List<Locale> supportedLocales = <Locale>[
     Locale('pt'),
     Locale('en'),
+    Locale('es'),
+    Locale('zh'),
   ];
 
   /// Application title
@@ -121,6 +125,18 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Inglês'**
   String get english;
+
+  /// No description provided for @spanish.
+  ///
+  /// In pt, this message translates to:
+  /// **'Espanhol'**
+  String get spanish;
+
+  /// No description provided for @chinese.
+  ///
+  /// In pt, this message translates to:
+  /// **'Chinês simplificado'**
+  String get chinese;
 
   /// No description provided for @signIn.
   ///
@@ -7508,7 +7524,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en', 'pt'].contains(locale.languageCode);
+      <String>['en', 'es', 'pt', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -7519,8 +7535,12 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   switch (locale.languageCode) {
     case 'en':
       return AppLocalizationsEn();
+    case 'es':
+      return AppLocalizationsEs();
     case 'pt':
       return AppLocalizationsPt();
+    case 'zh':
+      return AppLocalizationsZh();
   }
 
   throw FlutterError(

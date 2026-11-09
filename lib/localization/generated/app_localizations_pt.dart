@@ -21,6 +21,12 @@ class AppLocalizationsPt extends AppLocalizations {
   String get english => 'Inglês';
 
   @override
+  String get spanish => 'Espanhol';
+
+  @override
+  String get chinese => 'Chinês simplificado';
+
+  @override
   String get signIn => 'Entrar';
 
   @override
